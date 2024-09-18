@@ -242,7 +242,7 @@ public class App {
                 case 1:
                     System.out.printf("Informe o canal que desejas (%s - %s)\n>> ",
                         television.getMinLimitOfChannels(),
-                        television.getMaxLimitOfChannels()    
+                        television.getMaxLimitOfChannels() 
                     );
                     if (!remoteControl.setChannel(scanner.nextInt())) {
                         System.out.println("\nO canal selecionado é inválido!");

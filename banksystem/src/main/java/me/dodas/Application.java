@@ -3,28 +3,33 @@ package me.dodas;
 import me.dodas.models.Account;
 import me.dodas.models.Client;
 import me.dodas.models.Employee;
+import me.dodas.models.Manager;
+import me.dodas.models.VipAccount;
 
 public class Application {
     public static void main(String[] args) {
-        Account myAccount = new Account();
-        Client client = new Client();
-        
-        client.name = "Pedro";
-        myAccount.accountHolder = client;
-        myAccount.deposit(1200.00);
-        
-        if (!myAccount.withdraw(1100.00)) {
-            System.out.println("Seu saldo é insuficiente!");
-            return;
-        }
-        System.out.printf("Olá %s.%n", myAccount.accountHolder.name);
-        System.out.printf("Seu novo saldo é %s.\n", myAccount.balance);
-        
-        Employee employee1 = new Employee("João");
-        Employee employee2 = new Employee();
-        employee2.setName("Maria");
+        BonusControl bc = new BonusControl();
 
-        System.out.println("Employee1: " + employee1.getId());
-        System.out.println("Employee2: " + employee2.getId());
+        Manager manager = new Manager("João");
+        manager.setCpf("123.456.789-10");
+        manager.setWage(20000);
+        bc.register(manager);
+        
+        Employee employee1 = new Employee("Maria");	
+        employee1.setCpf("109.876.543-21");
+        employee1.setWage(2000);
+        bc.register(employee1);
+
+        System.out.printf("Bônus total: %s\n\n", bc.getTotalBonus());
+
+        Account acc1 = new Account(new Client("Pedro"));
+        acc1.setBalance(5000);
+        acc1.withdraw(100);
+        
+        VipAccount vAcc = new VipAccount(new Client("Marcos"));
+        vAcc.setBalance(10000);
+        vAcc.withdraw(100);
+
+        System.out.printf("acc1: %.2f\nvAcc: %.2f", acc1.getBalance(), vAcc.getBalance());
     }
 }

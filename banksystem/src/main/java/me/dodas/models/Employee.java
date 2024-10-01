@@ -1,14 +1,14 @@
 package me.dodas.models;
 
 public class Employee {
-    private static int numberOfEmployees;
-    private int id;
-    private String name;
-    private String department;
-    private double wage;
-    private String entryDate;
-    private String rg;
-    private boolean effective;
+    protected static int numberOfEmployees;
+    protected int id;
+    protected String name;
+    protected String department;
+    protected double wage;
+    protected String entryDate;
+    protected String cpf;
+    protected boolean effective;
     
     public Employee(){
         this.id = ++numberOfEmployees;
@@ -52,11 +52,11 @@ public class Employee {
         this.entryDate = entryDate;
     }
     
-    public String getRg() {
-        return rg;
+    public String getCpf() {
+        return cpf;
     }
-    public void setRg(String rg) {
-        this.rg = rg;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
     
     public boolean isEffective() {
@@ -64,5 +64,9 @@ public class Employee {
     }
     public void dismiss() {
         this.effective = false;
+    }
+
+    public double getBonus() {
+        return wage * 0.10;
     }
 }
